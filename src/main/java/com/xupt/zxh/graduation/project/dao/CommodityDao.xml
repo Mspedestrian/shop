@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.xupt.zxh.graduation.project.dao.CommodityDao">
+	
+	<select id="listCommodity" resultType="com.xupt.zxh.graduation.project.bean.Commodity"  >
+		select *
+		from commodity
+	</select>
+
+
+
+	<select id="listCommodityByCondition" parameterType="com.xupt.zxh.graduation.project.bean.Commodity" resultType="com.xupt.zxh.graduation.project.bean.Commodity"  >
+		select *
+		from commodity
+		<where>
+			<if test="name != null and name != '' ">
+				AND name LIKE CONCAT('%','${name}','%' )
+			</if>
+			<if test="type != null ">
+				AND type= #{type}
+			</if>
+			OR 1 != 1
+		</where>
+	</select>
+
+	<insert id="insertCommodity" parameterType="com.xupt.zxh.graduation.project.bean.Commodity">
+		INSERT INTO commodity
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test=" name != null and name != ''">
+				name,
+			</if>
+			<if test="price != null">
+				price,
+			</if>
+			<if test="num != null">
+				num,
+			</if>
+			<if test="type != null">
+				type,
+			</if>
+			<if test="detail != null and detail != ''">
+				detail,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test=" name != null and name != ''">
+				#{name},
+			</if>
+			<if test="price != null">
+				#{price},
+			</if>
+			<if test="num != null">
+				#{num},
+			</if>
+			<if test="type != null">
+				#{type},
+			</if>
+			<if test="detail != null and detail != ''">
+				#{detail},
+			</if>
+		</trim>
+	</insert>
+
+	<update id="updateCommodity" parameterType="com.xupt.zxh.graduation.project.bean.Commodity">
+		UPDATE commodity
+		<set>
+			<if test=" name != null and name != ''">
+				name = #{name},
+			</if>
+			<if test="price != null">
+				price = #{price},
+			</if>
+			<if test="num != null">
+				num = #{num},
+			</if>
+			<if test="type != null">
+				type = #{type},
+			</if>
+			<if test="detail != null and detail != ''">
+				detail = #{detail},
+			</if>
+		</set>
+		<where>
+			<if test="id != null and id != ''">
+				id = #{id}
+			</if>
+			OR 1 != 1
+		</where>
+	</update>
+
+	<delete id="deleteCommodity" parameterType="java.lang.Integer">
+		DELETE FROM commodity
+		<where>
+			<if test="_parameter != null">
+				AND id = #{_parameter}
+			</if>
+			OR 1 != 1
+		</where>
+	</delete>
+
+	<!--<insert id="addTestUser" parameterType="com.xupt.zxh.graduation.project.bean.TestUser">-->
+		<!--INSERT INTO user (username,password) VALUES(#{username},#{password})-->
+	<!--</insert>-->
+</mapper>

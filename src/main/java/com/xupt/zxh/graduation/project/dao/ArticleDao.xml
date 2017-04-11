@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.xupt.zxh.graduation.project.dao.ArticleDao">
+	
+	<select id="listArticle" resultType="com.xupt.zxh.graduation.project.bean.Article"  >
+		select *
+		from article
+	</select>
+
+
+
+	<select id="listArticleByCondition" parameterType="com.xupt.zxh.graduation.project.bean.Article" resultType="com.xupt.zxh.graduation.project.bean.Article"  >
+		select *
+		from article
+		<where>
+			<if test="name != null and name != '' ">
+				AND name LIKE CONCAT('%','${name}','%' )
+			</if>
+			OR 1 != 1
+		</where>
+	</select>
+
+	<insert id="insertArticle" parameterType="com.xupt.zxh.graduation.project.bean.Article">
+		INSERT INTO article
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test=" name != null and name != ''">
+				name,
+			</if>
+			<if test="content != null and content != ''">
+				content,
+			</if>
+			<if test="author != null and author != ''">
+				author,
+			</if>
+			<if test="createTime != null">
+				createTime,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test=" name != null and name != ''">
+				#{name},
+			</if>
+			<if test="content != null and content != ''">
+				#{content},
+			</if>
+			<if test="author != null and author != ''">
+				#{author},
+			</if>
+			<if test="createTime != null">
+				#{createTime},
+			</if>
+		</trim>
+	</insert>
+
+	<update id="updateArticle" parameterType="com.xupt.zxh.graduation.project.bean.Commodity">
+		UPDATE article
+		<set>
+			<if test=" name != null and name != ''">
+				name = #{name},
+			</if>
+			<if test="content != null and content != ''">
+				content = #{content},
+			</if>
+			<if test="author != null and author != ''">
+				author = #{author},
+			</if>
+			<if test="createTime != null">
+				type = #{createTime},
+			</if>
+		</set>
+		<where>
+			<if test="id != null and id != ''">
+				id = #{id}
+			</if>
+			OR 1 != 1
+		</where>
+	</update>
+
+	<delete id="deleteArticle" parameterType="java.lang.Integer">
+		DELETE FROM article
+		<where>
+			<if test="_parameter != null">
+				AND id = #{_parameter}
+			</if>
+			OR 1 != 1
+		</where>
+	</delete>
+
+	<!--<insert id="addTestUser" parameterType="com.xupt.zxh.graduation.project.bean.TestUser">-->
+		<!--INSERT INTO user (username,password) VALUES(#{username},#{password})-->
+	<!--</insert>-->
+</mapper>
