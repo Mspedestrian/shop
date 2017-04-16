@@ -15,7 +15,6 @@ import javax.servlet.http.HttpServletRequest;
 public class AccountServiceImpl implements AccountService {
 
 
-
     @Autowired
     private HttpServletRequest httpServletRequest;
 
@@ -34,6 +33,17 @@ public class AccountServiceImpl implements AccountService {
                 return true;
             }
             httpServletRequest.getSession().setAttribute(sessionId,usernameReal);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean logout() {
+        String sessionId = httpServletRequest.getSession().getId();
+        Object username = httpServletRequest.getSession().getAttribute(sessionId);
+        if(username != null){
+            httpServletRequest.getSession().removeAttribute(sessionId);
             return true;
         }
         return false;

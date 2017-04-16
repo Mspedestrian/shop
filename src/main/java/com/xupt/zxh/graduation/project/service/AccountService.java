@@ -14,4 +14,10 @@ public interface AccountService {
      */
     boolean login(User user);
 
+    /**
+     * 退出
+     * @return
+     */
+    boolean logout();
+
 }
