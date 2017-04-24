@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : my
-Source Server Version : 50621
-Source Host           : localhost:3306
+Source Server         : myConnection
+Source Server Version : 50548
+Source Host           : 127.0.0.1:3306
 Source Database       : shop
 
 Target Server Type    : MYSQL
-Target Server Version : 50621
+Target Server Version : 50548
 File Encoding         : 65001
 
-Date: 2017-04-11 21:28:09
+Date: 2017-04-24 17:55:18
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -26,7 +26,7 @@ CREATE TABLE `article` (
   `author` varchar(255) DEFAULT NULL,
   `createTime` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of article
@@ -58,19 +58,21 @@ INSERT INTO `commodity` VALUES ('7', '3456', '1013', '997', '5', '5677');
 INSERT INTO `commodity` VALUES ('8', '全自动温控热风炉用于鸡棚猪圈烘干中药花圃车间供暖燃气热风锅炉 举报', '100000', '100000', '3', '热风炉\n适用于鸡棚、猪圈以及其他畜牧养殖场的室内干燥通风，也适用于烘干金银花等中草药和苗圃花圃以及大面积车间的供暖。\n本公司生产的“金山口”系列热风炉能够实现全自动温控，操作简单，热效率高。\n欢迎致电本公司官方热线400-113-8028进行洽谈交流。\n');
 
 -- ----------------------------
--- Table structure for pictuer
+-- Table structure for picture
 -- ----------------------------
-DROP TABLE IF EXISTS `pictuer`;
-CREATE TABLE `pictuer` (
+DROP TABLE IF EXISTS `picture`;
+CREATE TABLE `picture` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `cId` int(11) DEFAULT NULL,
-  `path` varchar(255) DEFAULT NULL,
+  `cId` int(11) NOT NULL,
+  `path` varchar(255) NOT NULL,
+  `type` tinyint(4) NOT NULL COMMENT '图片的类型：',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of pictuer
+-- Records of picture
 -- ----------------------------
+INSERT INTO `picture` VALUES ('4', '1', 'D:/springUpload/3729070b-acda-4520-96b3-2fed5a1d55ce.png', '1');
 
 -- ----------------------------
 -- Table structure for type
