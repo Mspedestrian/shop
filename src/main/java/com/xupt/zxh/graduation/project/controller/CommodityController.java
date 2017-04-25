@@ -73,7 +73,8 @@ public class CommodityController {
     @RequestMapping(value = "/addCommodity",method = RequestMethod.POST, produces = { "application/json;charset=UTF-8" })
     public @ResponseBody ResponseInfo addCommodity(@RequestBody Commodity commodity){
         ResponseInfo responseInfo = new ResponseInfo();
-        commodityService.insertCommodity(commodity);
+        commodity = commodityService.insertCommodity(commodity);
+        responseInfo.setData(commodity);
         return responseInfo;
     }
 

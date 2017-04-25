@@ -24,7 +24,8 @@
 		</where>
 	</select>
 
-	<insert id="insertCommodity" parameterType="com.xupt.zxh.graduation.project.bean.Commodity">
+	<insert id="insertCommodity" useGeneratedKeys="true" keyProperty="id" parameterType="com.xupt.zxh.graduation.project.bean.Commodity">
+
 		INSERT INTO commodity
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test=" name != null and name != ''">

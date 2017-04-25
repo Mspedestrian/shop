@@ -30,8 +30,9 @@ public class CommodityServiceImpl implements CommodityService {
     }
 
     @Override
-    public void insertCommodity(Commodity commodity) {
+    public Commodity insertCommodity(Commodity commodity) {
         commodityDao.insertCommodity(commodity);
+        return commodity;
     }
 
     @Override

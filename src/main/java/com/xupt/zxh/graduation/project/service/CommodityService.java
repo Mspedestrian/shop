@@ -13,7 +13,7 @@ public interface CommodityService {
 
     List<Commodity> listCommodityByCondition(Commodity commodity);
 
-    void insertCommodity(Commodity commodity);
+    Commodity insertCommodity(Commodity commodity);
 
     void updateCommodity(Commodity commodity);
 
